@@ -3,8 +3,6 @@ import './App.css';
 import { nanoid } from 'nanoid';
 import { useDrag, useDrop } from 'react-dnd';
 import { ItemTypes } from './dnd/constants';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 // import PropTypes from 'prop-types';
 
 const List = (props) => {
@@ -78,8 +76,10 @@ const SingleCard = (props) => {
             index={props.index}
             className='single-card'
             draggable='true'
+            id={props.cardId}
             onDrop={(event) => {
                 props.setDargEnd(parseInt(event.target.getAttribute('index')));
+                props.setDargEndId(event.target.getAttribute('id'));
             }}
         >
             {props.item}
@@ -89,20 +89,26 @@ const SingleCard = (props) => {
 
 const DraggableCard = (props) => {
     let index = props.index;
-    let id = props.id;
+    let cardId = props.cardId;
     const [, drag] = useDrag({
-        item: { id, index, type: ItemTypes.CARD },
+        item: { cardId, index, type: ItemTypes.CARD },
     });
     return (
         <div ref={drag}>
-            <SingleCard item={props.item} index={index} setDargEnd={props.setDargEnd} />
+            <SingleCard
+                cardId={cardId}
+                item={props.item}
+                index={index}
+                setDargEnd={props.setDargEnd}
+                setDargEndId={props.setDargEndId}
+            />
         </div>
     );
 };
 
 const CardList = (props) => {
-    let cardListId = nanoid();
     const [dragEnd, setDargEnd] = React.useState(0);
+    const [dragEndId, setDargEndId] = React.useState('');
     // handle card move
     let newCards = props.listCards;
     let draggingId = '';
@@ -120,8 +126,8 @@ const CardList = (props) => {
         const newList = props.listItems.map((item) => {
             if (item.id === draggingId) {
                 return {
-                    id: props.id,
-                    title: props.listTitle,
+                    id: item.id,
+                    title: item.title,
                     cards: newCards,
                 };
             } else {
@@ -133,10 +139,11 @@ const CardList = (props) => {
     const [, drop] = useDrop({
         accept: ItemTypes.CARD,
         drop: (item) => {
-            draggingId = item.id;
-            handleMoveCards(item.index, dragEnd);
+            draggingId = item.cardId;
+            if (draggingId === dragEndId) {
+                handleMoveCards(item.index, dragEnd);
+            }
         },
-        // canDrop: (item) => item.id === props.id,
     });
 
     // render
@@ -145,27 +152,51 @@ const CardList = (props) => {
         return (
             <DraggableCard
                 key={id}
-                cardListId={cardListId}
+                cardId={props.cardId}
                 id={id}
                 item={item}
                 index={index}
                 setDargEnd={setDargEnd}
+                setDargEndId={setDargEndId}
             />
         );
     });
-
-    return (
-        <div ref={drop} id={cardListId}>
-            {returnList}
-        </div>
-    );
+    return <div ref={drop}>{returnList}</div>;
 };
 
 const AddCard = (props) => {
+    // console.log(props.setListItems);
     // set task text input
     const [inputText, setInputText] = React.useState('');
+    const [inputTitle, setInputTitle] = React.useState(props.listTitle);
+    // toggle input
     const toggleTextInput = (event) => {
         setInputText(event.target.value);
+    };
+    // toggle title input
+    const toggleTitleInput = (event) => {
+        setInputTitle(event.target.value);
+    };
+    // edit title
+    const editTitle = (event) => {
+        event.target.parentNode.childNodes.forEach((item) => {
+            item.classList.toggle('hide');
+        });
+    };
+    // save title
+    const saveTitle = (event) => {
+        event.target.parentNode.childNodes.forEach((item) => {
+            item.classList.toggle('hide');
+        });
+        const newList = props.listItems.map((item) => {
+            if (item.id === props.id) {
+                return { id: item.id, title: inputTitle, cards: item.cards };
+            } else {
+                return item;
+            }
+        });
+        props.setListItems(newList);
+        console.log(newList);
     };
     // toggle add list
     const toggleAddAList = (event, customTarget) => {
@@ -202,13 +233,38 @@ const AddCard = (props) => {
             setInputText('');
         }
     };
+    // delete a list
+    const deleteList = (event) => {
+        const newList = props.listItems.filter((item) => {
+            if (item.id !== props.id) {
+                return item;
+            }
+        });
+        props.setListItems(newList);
+    };
+
+    // render
     return (
         <div className='card'>
-            <div className='card-title'>{props.listTitle}</div>
+            <div className='card-title-box'>
+                <div className='card-title'>{props.listTitle}</div>
+                <input
+                    className='card-title-input hide'
+                    value={inputTitle}
+                    onChange={toggleTitleInput}
+                ></input>
+                <button className='card-title-edit hide' onClick={saveTitle}>
+                    save
+                </button>
+                <button className='card-title-edit' onClick={editTitle}>
+                    edit
+                </button>
+            </div>
             <CardList
                 listCards={props.listCards}
                 setListItems={props.setListItems}
                 listItems={props.listItems}
+                cardId={props.id}
             />
             <input
                 className='input-box card-input hide'
@@ -226,6 +282,9 @@ const AddCard = (props) => {
                     X
                 </button>
             </div>
+            <button className='add-init-button add-card-button' onClick={deleteList}>
+                Delete List
+            </button>
         </div>
     );
 };
@@ -233,6 +292,7 @@ const AddCard = (props) => {
 const App = () => {
     const [listItems, setListItems] = React.useState([
         { id: nanoid(), title: '1', cards: ['1', '2', '3', '4'] },
+        { id: nanoid(), title: '2', cards: ['11', '22', '33', '44'] },
     ]);
     return (
         <div className='App'>
