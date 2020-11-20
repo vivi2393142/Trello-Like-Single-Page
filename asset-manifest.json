@@ -1,23 +1,22 @@
 {
   "files": {
-    "main.css": "/Trello-Like-Single-Page/static/css/main.8c8b27cf.chunk.css",
-    "main.js": "/Trello-Like-Single-Page/static/js/main.68594dc0.chunk.js",
-    "main.js.map": "/Trello-Like-Single-Page/static/js/main.68594dc0.chunk.js.map",
-    "runtime-main.js": "/Trello-Like-Single-Page/static/js/runtime-main.b7c2b82b.js",
-    "runtime-main.js.map": "/Trello-Like-Single-Page/static/js/runtime-main.b7c2b82b.js.map",
-    "static/js/2.311d60e9.chunk.js": "/Trello-Like-Single-Page/static/js/2.311d60e9.chunk.js",
-    "static/js/2.311d60e9.chunk.js.map": "/Trello-Like-Single-Page/static/js/2.311d60e9.chunk.js.map",
-    "static/js/3.73a1c5a5.chunk.js": "/Trello-Like-Single-Page/static/js/3.73a1c5a5.chunk.js",
-    "static/js/3.73a1c5a5.chunk.js.map": "/Trello-Like-Single-Page/static/js/3.73a1c5a5.chunk.js.map",
+    "main.css": "/Trello-Like-Single-Page/static/css/main.349b7883.chunk.css",
+    "main.js": "/Trello-Like-Single-Page/static/js/main.53f6ce2a.chunk.js",
+    "main.js.map": "/Trello-Like-Single-Page/static/js/main.53f6ce2a.chunk.js.map",
+    "runtime-main.js": "/Trello-Like-Single-Page/static/js/runtime-main.a21eb551.js",
+    "runtime-main.js.map": "/Trello-Like-Single-Page/static/js/runtime-main.a21eb551.js.map",
+    "static/js/2.57e24fd7.chunk.js": "/Trello-Like-Single-Page/static/js/2.57e24fd7.chunk.js",
+    "static/js/2.57e24fd7.chunk.js.map": "/Trello-Like-Single-Page/static/js/2.57e24fd7.chunk.js.map",
+    "static/js/3.fe7fae22.chunk.js": "/Trello-Like-Single-Page/static/js/3.fe7fae22.chunk.js",
+    "static/js/3.fe7fae22.chunk.js.map": "/Trello-Like-Single-Page/static/js/3.fe7fae22.chunk.js.map",
     "index.html": "/Trello-Like-Single-Page/index.html",
-    "static/css/main.8c8b27cf.chunk.css.map": "/Trello-Like-Single-Page/static/css/main.8c8b27cf.chunk.css.map",
-    "static/js/2.311d60e9.chunk.js.LICENSE.txt": "/Trello-Like-Single-Page/static/js/2.311d60e9.chunk.js.LICENSE.txt",
-    "static/media/logo.103b5fa1.svg": "/Trello-Like-Single-Page/static/media/logo.103b5fa1.svg"
+    "static/css/main.349b7883.chunk.css.map": "/Trello-Like-Single-Page/static/css/main.349b7883.chunk.css.map",
+    "static/js/2.57e24fd7.chunk.js.LICENSE.txt": "/Trello-Like-Single-Page/static/js/2.57e24fd7.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.b7c2b82b.js",
-    "static/js/2.311d60e9.chunk.js",
-    "static/css/main.8c8b27cf.chunk.css",
-    "static/js/main.68594dc0.chunk.js"
+    "static/js/runtime-main.a21eb551.js",
+    "static/js/2.57e24fd7.chunk.js",
+    "static/css/main.349b7883.chunk.css",
+    "static/js/main.53f6ce2a.chunk.js"
   ]
 }
