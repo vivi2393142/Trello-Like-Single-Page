@@ -8,7 +8,6 @@ Simple Trello-like SPA built with React.
 
 -   Front-End Basic
     -   HTML / CSS / JavaScript
-    -   SCSS
 -   Front-End Frameworks
     -   React
     -   React Router
