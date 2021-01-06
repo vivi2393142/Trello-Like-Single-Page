@@ -1,7 +1,8 @@
 # Trello-Like Single Page App
 
 Simple Trello-like SPA built with React.
- <a href="https://vivi2393142.github.io/Trello-Like-Single-Page/"><strong>View Website »</strong></a>
+<br>
+<a href="https://vivi2393142.github.io/Trello-Like-Single-Page/"><strong>View Website »</strong></a>
 
 ## Technologies
 
